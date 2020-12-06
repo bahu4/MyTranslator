@@ -20,13 +20,18 @@ class MainActivity : BaseActivity<AppState>() {
     private var adapter: MainRVAdapter? = null
 
 
+    override fun createPresenter(): IPresenter<AppState, IMainView> {
+        return MainPresenter()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val start = findViewById<Button>(R.id.translate_button)
         val text = findViewById<EditText>(R.id.text_edit)
         start.setOnClickListener {
-            presenter.getData(text.text.toString(), true)
+            val word = text.text.toString()
+            presenter.getData(word, true)
         }
     }
 
@@ -36,10 +41,6 @@ class MainActivity : BaseActivity<AppState>() {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = MainRVAdapter(searchResult)
         }
-    }
-
-    override fun createPresenter(): IPresenter<AppState, IMainView> {
-        return MainPresenter()
     }
 
     override fun renderData(appState: AppState) {
