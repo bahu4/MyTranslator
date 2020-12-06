@@ -3,4 +3,6 @@
     <string name="text_edit_hint">word to translate</string>
     <string name="translate_btn_text">let\'s go</string>
     <string name="error_text">Error</string>
+    <string name="empty_server_response_on_success">Response from server is empty</string>
+    <string name="undefined_error">Undefined error</string>
 </resources>

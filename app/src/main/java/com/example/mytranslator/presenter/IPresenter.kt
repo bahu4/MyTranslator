@@ -1,5 +1,6 @@
-package com.example.mytranslator
+package com.example.mytranslator.presenter
 
+import com.example.mytranslator.view.IMainView
 import com.example.mytranslator.data.AppState
 
 interface IPresenter<T : AppState, V : IMainView> {
