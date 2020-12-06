@@ -1,7 +1,7 @@
-package com.example.mytranslator
+package com.example.mytranslator.repository
 
 import io.reactivex.Observable
 
-interface Repository<T> {
+interface IRepository<T> {
     fun getData(word: String): Observable<T>
 }

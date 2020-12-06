@@ -21,7 +21,7 @@ class MainActivity : BaseActivity<AppState>() {
         }
     }
 
-    override fun createPresenter(): Presenter<AppState, MainView> {
+    override fun createPresenter(): IPresenter<AppState, IMainView> {
         TODO("Not yet implemented")
     }
 

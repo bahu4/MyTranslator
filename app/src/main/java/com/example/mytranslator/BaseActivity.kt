@@ -4,23 +4,23 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mytranslator.data.AppState
 
-abstract class BaseActivity<T: AppState>: AppCompatActivity(), MainView {
-    protected lateinit var presenter: Presenter<T, MainView>
-    protected abstract fun createPresenter(): Presenter<T, MainView>
+abstract class BaseActivity<T: AppState>: AppCompatActivity(), IMainView {
+    protected lateinit var IPresenter: IPresenter<T, IMainView>
+    protected abstract fun createPresenter(): IPresenter<T, IMainView>
     abstract override fun renderData(appState: AppState)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = createPresenter()
+        IPresenter = createPresenter()
     }
 
     override fun onStart() {
         super.onStart()
-        presenter.attachView(this)
+        IPresenter.attachView(this)
     }
 
     override fun onStop() {
         super.onStop()
-        presenter.detachView(this)
+        IPresenter.detachView(this)
     }
 }

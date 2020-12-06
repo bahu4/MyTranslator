@@ -2,6 +2,6 @@ package com.example.mytranslator
 
 import io.reactivex.Observable
 
-interface Interactor<T> {
+interface IInteractor<T> {
     fun getData(word: String, fromRemoteSource: Boolean): Observable<T>
 }
