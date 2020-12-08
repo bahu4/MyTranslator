@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.mytranslator.data.AppState
 import com.example.mytranslator.presenter.IPresenter
 
-abstract class BaseActivity<T: AppState>: AppCompatActivity(), IMainView {
+abstract class BaseActivity<T : AppState> : AppCompatActivity(), IMainView {
     protected lateinit var presenter: IPresenter<T, IMainView>
     protected abstract fun createPresenter(): IPresenter<T, IMainView>
     abstract override fun renderData(appState: AppState)

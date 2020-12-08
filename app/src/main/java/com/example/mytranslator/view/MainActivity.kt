@@ -1,7 +1,6 @@
 package com.example.mytranslator.view
 
 import android.os.Bundle
-import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.*
@@ -13,7 +12,6 @@ import com.example.mytranslator.data.AppState
 import com.example.mytranslator.data.SearchResult
 import com.example.mytranslator.presenter.IPresenter
 import com.example.mytranslator.presenter.MainPresenter
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : BaseActivity<AppState>() {
@@ -37,13 +35,13 @@ class MainActivity : BaseActivity<AppState>() {
         }
     }
 
-//    private fun initRV(searchResult: List<SearchResult>) {
-//        recyclerView = findViewById(R.id.main_rv)
-//        recyclerView.apply {
-//            layoutManager = LinearLayoutManager(this@MainActivity)
-//            adapter = MainRVAdapter(searchResult)
-//        }
-//    }
+    private fun initRV(searchResult: List<SearchResult>) {
+        recyclerView = findViewById(R.id.main_rv)
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = MainRVAdapter(searchResult)
+        }
+    }
 
     override fun renderData(appState: AppState) {
         when (appState) {
@@ -54,9 +52,7 @@ class MainActivity : BaseActivity<AppState>() {
                 } else {
                     showViewSuccess()
                     if (adapter == null) {
-//                        initRV(searchResult)
-                        main_rv.layoutManager = LinearLayoutManager(applicationContext)
-                        main_rv.adapter = MainRVAdapter(searchResult)
+                        initRV(searchResult)
                     } else {
                         adapter!!.setData(searchResult)
                     }
