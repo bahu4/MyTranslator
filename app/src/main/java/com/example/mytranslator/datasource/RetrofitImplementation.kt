@@ -1,6 +1,7 @@
 package com.example.mytranslator.datasource
 
 import com.example.mytranslator.data.SearchResult
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import io.reactivex.Observable
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -21,6 +22,7 @@ class RetrofitImplementation : IDataSource<List<SearchResult>> {
         return Retrofit.Builder()
             .baseUrl(BASE_URL_LOCATIONS)
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(createOkHttpClient(interceptor))
             .build()
     }

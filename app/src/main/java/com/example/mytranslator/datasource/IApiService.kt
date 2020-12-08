@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface IApiService {
-    @GET("word/search")
+    @GET("words/search")
     fun search(@Query("search") wordToSearch: String): Observable<List<SearchResult>>
 }
