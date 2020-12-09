@@ -12,28 +12,29 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mytranslator.R
 import com.example.mytranslator.data.AppState
 import com.example.mytranslator.data.SearchResult
+import dagger.android.AndroidInjection
 import java.util.*
+import javax.inject.Inject
 
 
 class MainActivity : BaseActivity<AppState, MainInteractor>() {
 
+    @Inject
+    internal lateinit var viewModelFactory: ViewModelProvider.Factory
+    override lateinit var model: MainViewModel
     private lateinit var recyclerView: RecyclerView
     private var adapter: MainRVAdapter? = null
 
-    override val model: MainViewModel by lazy {
-        ViewModelProvider.NewInstanceFactory().create(MainViewModel::class.java)
-    }
-
-    private val observer = Observer<AppState> { renderData(it) }
-
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        model = viewModelFactory.create(MainViewModel::class.java)
+        model.subscribe().observe(this@MainActivity, Observer<AppState> { renderData(it) })
         val start = findViewById<Button>(R.id.translate_button)
         val text = findViewById<EditText>(R.id.text_edit)
         start.setOnClickListener {
             model.getData(text.text.toString(), true)
-                .observe(this@MainActivity, observer)
         }
     }
 
