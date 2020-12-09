@@ -2,7 +2,7 @@ package com.example.mytranslator.view
 
 import com.example.mytranslator.data.AppState
 import com.example.mytranslator.data.SearchResult
-import com.example.mytranslator.presenter.IInteractor
+import com.example.mytranslator.viewmodel.IInteractor
 import com.example.mytranslator.repository.IRepository
 import io.reactivex.Observable
 
