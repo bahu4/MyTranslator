@@ -26,5 +26,5 @@ abstract class BaseViewModel<T : AppState>(
 
     abstract fun handleError(error: Throwable)
 
-    abstract fun getData(word: String)
+    abstract fun getData(word: String, isOnline: Boolean)
 }

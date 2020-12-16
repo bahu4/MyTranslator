@@ -11,11 +11,6 @@ import com.example.mytranslator.data.SearchResult
 class MainRVAdapter(private var data: List<SearchResult>) :
     RecyclerView.Adapter<MainRVAdapter.ViewHolder>() {
 
-    fun setData(data: List<SearchResult>) {
-        this.data = data
-        notifyDataSetChanged()
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(
             LayoutInflater.from(parent.context)

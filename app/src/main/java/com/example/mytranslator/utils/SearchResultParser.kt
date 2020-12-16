@@ -3,6 +3,7 @@ package com.example.mytranslator.utils
 import com.example.mytranslator.data.AppState
 import com.example.mytranslator.data.Meanings
 import com.example.mytranslator.data.SearchResult
+import com.example.mytranslator.room.HistoryEntity
 
 fun parseSearchResults(data: AppState): AppState {
     val newSearchResults = arrayListOf<SearchResult>()
@@ -25,7 +26,7 @@ private fun parseResult(dataModel: SearchResult, newDataModels: ArrayList<Search
         val newMeanings = arrayListOf<Meanings>()
         for (meaning in dataModel.meanings) {
             if (meaning.translation != null && !meaning.translation.translation.isNullOrBlank()) {
-                newMeanings.add(Meanings(meaning.translation))
+                newMeanings.add(Meanings(meaning.translation, meaning.imageUrl))
             }
         }
         if (newMeanings.isNotEmpty()) {
@@ -34,14 +35,26 @@ private fun parseResult(dataModel: SearchResult, newDataModels: ArrayList<Search
     }
 }
 
-fun convertMeaningsToString(meanings: List<Meanings>): String {
-    var meaningsSeparatedByComma = String()
-    for ((index, meaning) in meanings.withIndex()) {
-        meaningsSeparatedByComma += if (index + 1 != meanings.size) {
-            String.format("%s%s", meaning.translation?.translation, ", ")
-        } else {
-            meaning.translation?.translation
+fun mapHistoryEntityToSearchResult(list: List<HistoryEntity>): List<SearchResult> {
+    val result = ArrayList<SearchResult>()
+    if (!list.isNullOrEmpty()) {
+        for (entity in list) {
+            result.add(SearchResult(entity.word, null))
         }
     }
-    return meaningsSeparatedByComma
+    return result
+}
+
+fun convertSearchResultSuccessToEntity(appState: AppState): HistoryEntity? {
+    return when (appState) {
+        is AppState.Success -> {
+            val searchResult = appState.data
+            if (searchResult.isNullOrEmpty() || searchResult[0].text.isNullOrEmpty()) {
+                null
+            } else {
+                HistoryEntity(searchResult[0].text!!, null)
+            }
+        }
+        else -> null
+    }
 }

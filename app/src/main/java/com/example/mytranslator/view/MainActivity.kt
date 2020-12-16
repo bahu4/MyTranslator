@@ -15,7 +15,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import androidx.lifecycle.Observer
 
 
-class MainActivity : BaseActivity<AppState, MainInteractor>() {
+class   MainActivity : BaseActivity<AppState, MainInteractor>() {
 
     override lateinit var model: MainViewModel
     private lateinit var recyclerView: RecyclerView
