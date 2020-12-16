@@ -5,33 +5,36 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mytranslator.R
 import com.example.mytranslator.data.AppState
 import com.example.mytranslator.data.SearchResult
-import com.example.mytranslator.presenter.IPresenter
-import com.example.mytranslator.presenter.MainPresenter
+import dagger.android.AndroidInjection
+import java.util.*
+import javax.inject.Inject
 
 
-class MainActivity : BaseActivity<AppState>() {
+class MainActivity : BaseActivity<AppState, MainInteractor>() {
 
+    @Inject
+    internal lateinit var viewModelFactory: ViewModelProvider.Factory
+    override lateinit var model: MainViewModel
     private lateinit var recyclerView: RecyclerView
     private var adapter: MainRVAdapter? = null
 
-
-    override fun createPresenter(): IPresenter<AppState, IMainView> {
-        return MainPresenter()
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        model = viewModelFactory.create(MainViewModel::class.java)
+        model.subscribe().observe(this@MainActivity, Observer<AppState> { renderData(it) })
         val start = findViewById<Button>(R.id.translate_button)
         val text = findViewById<EditText>(R.id.text_edit)
         start.setOnClickListener {
-            val word = text.text.toString()
-            presenter.getData(word, true)
+            model.getData(text.text.toString(), true)
         }
     }
 
@@ -83,4 +86,5 @@ class MainActivity : BaseActivity<AppState>() {
         errorLayout.visibility = VISIBLE
         successLayout.visibility = GONE
     }
+
 }
