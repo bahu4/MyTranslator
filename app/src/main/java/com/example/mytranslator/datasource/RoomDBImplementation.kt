@@ -8,7 +8,7 @@ import com.example.mytranslator.utils.mapHistoryEntityToSearchResult
 
 class RoomDBImplementation(private val historyDAO: HistoryDAO) :
     IDataSourceLocal<List<SearchResult>> {
-    override suspend fun addToDB(appState: AppState) {
+    override suspend fun saveToDB(appState: AppState) {
         convertSearchResultSuccessToEntity(appState)?.let {
             historyDAO.insert(it)
         }

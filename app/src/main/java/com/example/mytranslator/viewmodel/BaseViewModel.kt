@@ -6,7 +6,7 @@ import com.example.mytranslator.data.AppState
 import kotlinx.coroutines.*
 
 abstract class BaseViewModel<T : AppState>(
-    protected open val _mutableLiveData: MutableLiveData<T> = MutableLiveData(),
+    protected open val _mutableLiveData: MutableLiveData<T> = MutableLiveData()
 ) : ViewModel() {
     override fun onCleared() {
         super.onCleared()

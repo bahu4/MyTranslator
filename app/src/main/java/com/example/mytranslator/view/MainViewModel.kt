@@ -13,8 +13,6 @@ class MainViewModel(
 ) : BaseViewModel<AppState>() {
     private val liveDataForViewToObserve: LiveData<AppState> = _mutableLiveData
 
-    private var appState: AppState? = null
-
     override fun getData(word: String, isOnline: Boolean) {
         _mutableLiveData.value = AppState.Loading(null)
         cancelJob()

@@ -30,7 +30,7 @@ class   MainActivity : BaseActivity<AppState, MainInteractor>() {
         val start = findViewById<Button>(R.id.translate_button)
         val text = findViewById<EditText>(R.id.text_edit)
         start.setOnClickListener {
-            model.getData(text.text.toString())
+            model.getData(text.text.toString(),true)
         }
     }
 
