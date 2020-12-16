@@ -5,36 +5,32 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mytranslator.R
 import com.example.mytranslator.data.AppState
 import com.example.mytranslator.data.SearchResult
-import dagger.android.AndroidInjection
-import java.util.*
-import javax.inject.Inject
+import org.koin.android.viewmodel.ext.android.viewModel
+import androidx.lifecycle.Observer
 
 
 class MainActivity : BaseActivity<AppState, MainInteractor>() {
 
-    @Inject
-    internal lateinit var viewModelFactory: ViewModelProvider.Factory
     override lateinit var model: MainViewModel
     private lateinit var recyclerView: RecyclerView
-    private var adapter: MainRVAdapter? = null
+    private val adapter: MainRVAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        model = viewModelFactory.create(MainViewModel::class.java)
+        val viewModel: MainViewModel by viewModel()
+        model = viewModel
         model.subscribe().observe(this@MainActivity, Observer<AppState> { renderData(it) })
         val start = findViewById<Button>(R.id.translate_button)
         val text = findViewById<EditText>(R.id.text_edit)
         start.setOnClickListener {
-            model.getData(text.text.toString(), true)
+            model.getData(text.text.toString())
         }
     }
 
@@ -50,15 +46,10 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
         when (appState) {
             is AppState.Success -> {
                 val searchResult = appState.data
-                if (searchResult.isEmpty()) {
+                if (searchResult.isNullOrEmpty()) {
                     showErrorScreen(getString(R.string.empty_server_response_on_success))
                 } else {
-                    showViewSuccess()
-                    if (adapter == null) {
-                        initRV(searchResult)
-                    } else {
-                        adapter!!.setData(searchResult)
-                    }
+                    initRV(searchResult)
                 }
             }
             is AppState.Error -> {
@@ -71,13 +62,6 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
         showViewError()
         val errorTextView = findViewById<TextView>(R.id.error_text)
         errorTextView.text = error ?: getString(R.string.undefined_error)
-    }
-
-    private fun showViewSuccess() {
-        val errorLayout = findViewById<ConstraintLayout>(R.id.error_layout)
-        val successLayout = findViewById<FrameLayout>(R.id.success_layout)
-        errorLayout.visibility = GONE
-        successLayout.visibility = VISIBLE
     }
 
     private fun showViewError() {
