@@ -1,9 +1,10 @@
 package com.example.mytranslator.view.main
 
 import androidx.lifecycle.LiveData
-import geekbrains.ru.core.viewmodel.BaseViewModel
-import geekbrains.ru.model.data.DataModel
-import geekbrains.ru.translator.utils.parseOnlineSearchResults
+import com.example.core.viewmodel.BaseViewModel
+import com.example.model.DataModel
+import com.example.mytranslator.utils.parseOnlineSearchResults
+
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

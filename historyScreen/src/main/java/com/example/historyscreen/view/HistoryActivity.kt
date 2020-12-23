@@ -1,7 +1,13 @@
 package com.example.historyscreen.view
 
 import android.os.Bundle
+import androidx.lifecycle.Observer
+import com.example.core.BaseActivity
 import com.example.historyscreen.R
+import com.example.model.DataModel
+import com.example.model.SearchResult
+import kotlinx.android.synthetic.main.activity_history.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class HistoryActivity : BaseActivity<DataModel, HistoryInteractor>() {
 

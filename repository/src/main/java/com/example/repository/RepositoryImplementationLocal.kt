@@ -1,7 +1,8 @@
 package com.example.repository
 
-import geekbrains.ru.model.data.DataModel
-import geekbrains.ru.model.data.SearchResult
+import com.example.model.DataModel
+import com.example.model.SearchResult
+
 
 class RepositoryImplementationLocal(private val dataSource: DataSourceLocal<List<SearchResult>>) :
     RepositoryLocal<List<SearchResult>> {

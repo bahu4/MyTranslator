@@ -1,8 +1,9 @@
 package com.example.mytranslator.utils
 
-import geekbrains.ru.model.data.DataModel
-import geekbrains.ru.model.data.Meanings
-import geekbrains.ru.model.data.SearchResult
+import com.example.model.DataModel
+import com.example.model.Meanings
+import com.example.model.SearchResult
+
 
 fun parseOnlineSearchResults(data: DataModel): DataModel {
     return DataModel.Success(mapResult(data, true))

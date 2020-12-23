@@ -1,10 +1,11 @@
 package com.example.mytranslator.view.main
 
-import geekbrains.ru.core.viewmodel.Interactor
-import geekbrains.ru.model.data.DataModel
-import geekbrains.ru.model.data.SearchResult
-import geekbrains.ru.repository.Repository
-import geekbrains.ru.repository.RepositoryLocal
+import com.example.core.viewmodel.Interactor
+import com.example.model.DataModel
+import com.example.model.SearchResult
+import com.example.repository.Repository
+import com.example.repository.RepositoryLocal
+
 
 class MainInteractor(
     private val repositoryRemote: Repository<List<SearchResult>>,

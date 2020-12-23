@@ -1,20 +1,24 @@
 package com.example.mytranslator.di
 
 import androidx.room.Room
-import geekbrains.ru.history.view.history.HistoryInteractor
-import geekbrains.ru.history.view.history.HistoryViewModel
-import geekbrains.ru.model.data.SearchResult
-import geekbrains.ru.model.room.HistoryDataBase
-import geekbrains.ru.repository.*
-import geekbrains.ru.translator.view.main.MainInteractor
-import geekbrains.ru.translator.view.main.MainViewModel
+import com.example.historyscreen.view.HistoryInteractor
+import com.example.historyscreen.view.HistoryViewModel
+import com.example.model.SearchResult
+import com.example.mytranslator.view.main.MainInteractor
+import com.example.mytranslator.view.main.MainViewModel
+import com.example.repository.*
+import com.example.repository.room.HistoryDataBase
+
 import org.koin.dsl.module
 
 val application = module {
     single { Room.databaseBuilder(get(), HistoryDataBase::class.java, "HistoryDB").build() }
     single { get<HistoryDataBase>().historyDao() }
     single<Repository<List<SearchResult>>> { RepositoryImplementation(RetrofitImplementation()) }
-    single<RepositoryLocal<List<SearchResult>>> { RepositoryImplementationLocal(RoomDataBaseImplementation(get()))
+    single<RepositoryLocal<List<SearchResult>>> {
+        RepositoryImplementationLocal(
+            RoomDataBaseImplementation(get())
+        )
     }
 }
 

@@ -7,15 +7,15 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.Observer
-import geekbrains.ru.core.BaseActivity
-import geekbrains.ru.history.view.history.HistoryActivity
-import geekbrains.ru.model.data.DataModel
-import geekbrains.ru.model.data.SearchResult
-import geekbrains.ru.translator.R
-import geekbrains.ru.translator.utils.convertMeaningsToString
-import geekbrains.ru.translator.view.descriptionscreen.DescriptionActivity
-import geekbrains.ru.translator.view.main.adapter.MainAdapter
-import geekbrains.ru.utils.network.isOnline
+import com.example.core.BaseActivity
+import com.example.model.DataModel
+import com.example.model.SearchResult
+import com.example.mytranslator.R
+import com.example.mytranslator.utils.convertMeaningsToString
+import com.example.mytranslator.view.description.DescriptionActivity
+import com.example.mytranslator.view.main.adapter.MainAdapter
+import com.example.utils.network.isOnline
+
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.viewmodel.ext.android.viewModel
 

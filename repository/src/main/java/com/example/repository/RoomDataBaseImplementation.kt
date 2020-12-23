@@ -1,8 +1,9 @@
 package com.example.repository
 
-import geekbrains.ru.model.data.DataModel
-import geekbrains.ru.model.data.SearchResult
-import geekbrains.ru.model.room.HistoryDao
+import com.example.model.DataModel
+import com.example.model.SearchResult
+import com.example.repository.room.HistoryDao
+
 
 class RoomDataBaseImplementation(private val historyDao: HistoryDao) : DataSourceLocal<List<SearchResult>> {
 

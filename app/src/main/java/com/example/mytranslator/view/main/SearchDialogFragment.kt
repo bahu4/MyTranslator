@@ -8,10 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.mytranslator.R
+import com.example.utils.getEmptyString
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.textfield.TextInputEditText
-import geekbrains.ru.translator.R
-import geekbrains.ru.utils.getEmptyString
+
 import kotlinx.android.synthetic.main.search_dialog_fragment.*
 
 class SearchDialogFragment : BottomSheetDialogFragment() {

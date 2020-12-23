@@ -1,6 +1,7 @@
 package com.example.repository.api
 
-import geekbrains.ru.model.data.SearchResult
+
+import com.example.model.SearchResult
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query

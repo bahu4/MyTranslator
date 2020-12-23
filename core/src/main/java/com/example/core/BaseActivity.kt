@@ -5,12 +5,13 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import geekbrains.ru.core.viewmodel.BaseViewModel
-import geekbrains.ru.core.viewmodel.Interactor
-import geekbrains.ru.model.data.DataModel
-import geekbrains.ru.model.data.SearchResult
-import geekbrains.ru.utils.network.isOnline
-import geekbrains.ru.utils.ui.AlertDialogFragment
+import com.example.core.viewmodel.BaseViewModel
+import com.example.core.viewmodel.Interactor
+import com.example.model.DataModel
+import com.example.model.SearchResult
+import com.example.utils.network.isOnline
+import com.example.utils.ui.AlertDialogFragment
+
 import kotlinx.android.synthetic.main.loading_layout.*
 
 private const val DIALOG_FRAGMENT_TAG = "74a54328-5d62-46bf-ab6b-cbf5d8c79522"
@@ -74,7 +75,8 @@ abstract class BaseActivity<T : DataModel, I : Interactor<T>> : AppCompatActivit
     }
 
     protected fun showAlertDialog(title: String?, message: String?) {
-        AlertDialogFragment.newInstance(title, message).show(supportFragmentManager, DIALOG_FRAGMENT_TAG)
+        AlertDialogFragment.newInstance(title, message)
+            .show(supportFragmentManager, DIALOG_FRAGMENT_TAG)
     }
 
     private fun showViewWorking() {

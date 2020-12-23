@@ -1,9 +1,9 @@
 package com.example.historyscreen.view
 
 import androidx.lifecycle.LiveData
-import geekbrains.ru.core.viewmodel.BaseViewModel
-import geekbrains.ru.history.parseLocalSearchResults
-import geekbrains.ru.model.data.DataModel
+import com.example.core.viewmodel.BaseViewModel
+import com.example.historyscreen.parseLocalSearchResults
+import com.example.model.DataModel
 import kotlinx.coroutines.launch
 
 class HistoryViewModel(private val interactor: HistoryInteractor) :
@@ -30,7 +30,8 @@ class HistoryViewModel(private val interactor: HistoryInteractor) :
     }
 
     override fun onCleared() {
-        _mutableLiveData.value = DataModel.Success(null)//TODO Workaround. Set View to original state
+        _mutableLiveData.value =
+            DataModel.Success(null)//TODO Workaround. Set View to original state
         super.onCleared()
     }
 }

@@ -1,6 +1,7 @@
 package com.example.repository
 
-import geekbrains.ru.model.data.DataModel
+import com.example.model.DataModel
+
 
 interface RepositoryLocal<T> : Repository<T> {
 

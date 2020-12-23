@@ -1,6 +1,7 @@
 package com.example.repository
 
-import example.com.model.data.SearchResult
+import com.example.model.SearchResult
+
 
 class RepositoryImplementation(private val dataSource: DataSource<List<SearchResult>>) :
     Repository<List<SearchResult>> {

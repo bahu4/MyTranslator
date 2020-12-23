@@ -5,8 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import geekbrains.ru.history.R
-import geekbrains.ru.model.data.SearchResult
+import com.example.historyscreen.R
+import com.example.model.SearchResult
+
 import kotlinx.android.synthetic.main.activity_history_recyclerview_item.view.*
 
 class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.RecyclerItemViewHolder>() {
