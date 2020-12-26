@@ -4,7 +4,6 @@ import com.example.model.DataModel
 import com.example.model.Meanings
 import com.example.model.SearchResult
 
-
 fun parseLocalSearchResults(data: DataModel): DataModel {
     return DataModel.Success(mapResult(data, false))
 }
@@ -41,7 +40,10 @@ private fun getSuccessResultData(
     }
 }
 
-private fun parseOnlineResult(searchResult: SearchResult, newSearchResults: ArrayList<SearchResult>) {
+private fun parseOnlineResult(
+    searchResult: SearchResult,
+    newSearchResults: ArrayList<SearchResult>
+) {
     if (!searchResult.text.isNullOrBlank() && !searchResult.meanings.isNullOrEmpty()) {
         val newMeanings = arrayListOf<Meanings>()
         for (meaning in searchResult.meanings!!) {

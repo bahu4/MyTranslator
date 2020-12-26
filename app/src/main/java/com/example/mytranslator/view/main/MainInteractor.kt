@@ -6,7 +6,6 @@ import com.example.model.SearchResult
 import com.example.repository.Repository
 import com.example.repository.RepositoryLocal
 
-
 class MainInteractor(
     private val repositoryRemote: Repository<List<SearchResult>>,
     private val repositoryLocal: RepositoryLocal<List<SearchResult>>

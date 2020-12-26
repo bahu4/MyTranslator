@@ -1,6 +1,5 @@
 package com.example.mytranslator.view.main
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -8,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.Observer
 import com.example.core.BaseActivity
+import com.example.historyscreen.view.HistoryActivity
 import com.example.model.DataModel
 import com.example.model.SearchResult
 import com.example.mytranslator.R

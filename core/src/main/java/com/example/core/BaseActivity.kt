@@ -1,6 +1,5 @@
 package com.example.core
 
-
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
@@ -11,7 +10,6 @@ import com.example.model.DataModel
 import com.example.model.SearchResult
 import com.example.utils.network.isOnline
 import com.example.utils.ui.AlertDialogFragment
-
 import kotlinx.android.synthetic.main.loading_layout.*
 
 private const val DIALOG_FRAGMENT_TAG = "74a54328-5d62-46bf-ab6b-cbf5d8c79522"

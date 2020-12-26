@@ -4,7 +4,6 @@ import com.example.model.DataModel
 import com.example.model.SearchResult
 import com.example.repository.room.HistoryEntity
 
-
 fun mapHistoryEntityToSearchResult(list: List<HistoryEntity>): List<SearchResult> {
     val searchResult = ArrayList<SearchResult>()
     if (!list.isNullOrEmpty()) {

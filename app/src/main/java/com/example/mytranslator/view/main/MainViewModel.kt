@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import com.example.core.viewmodel.BaseViewModel
 import com.example.model.DataModel
 import com.example.mytranslator.utils.parseOnlineSearchResults
-
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -24,7 +23,7 @@ class MainViewModel(private val interactor: MainInteractor) :
         viewModelCoroutineScope.launch { startInteractor(word, isOnline) }
     }
 
-   private suspend fun startInteractor(word: String, isOnline: Boolean) =
+    private suspend fun startInteractor(word: String, isOnline: Boolean) =
         withContext(Dispatchers.IO) {
             _mutableLiveData.postValue(parseOnlineSearchResults(interactor.getData(word, isOnline)))
         }
@@ -35,7 +34,7 @@ class MainViewModel(private val interactor: MainInteractor) :
 
     override fun onCleared() {
         _mutableLiveData.value =
-            DataModel.Success(null)//TODO Workaround. Set View to original state
+            DataModel.Success(null)
         super.onCleared()
     }
 }

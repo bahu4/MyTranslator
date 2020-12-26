@@ -31,7 +31,7 @@ class HistoryViewModel(private val interactor: HistoryInteractor) :
 
     override fun onCleared() {
         _mutableLiveData.value =
-            DataModel.Success(null)//TODO Workaround. Set View to original state
+            DataModel.Success(null)
         super.onCleared()
     }
 }
