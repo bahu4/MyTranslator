@@ -1,23 +1,33 @@
 package com.example.mytranslator.di
 
-import com.example.mytranslator.data.SearchResult
-import com.example.mytranslator.datasource.RetrofitImplementation
-import com.example.mytranslator.repository.IRepository
-import com.example.mytranslator.repository.RepositoryImplementation
-import com.example.mytranslator.view.MainInteractor
-import com.example.mytranslator.view.MainViewModel
-import org.koin.core.qualifier.named
+import androidx.room.Room
+import com.example.historyscreen.view.HistoryInteractor
+import com.example.historyscreen.view.HistoryViewModel
+import com.example.model.SearchResult
+import com.example.mytranslator.view.main.MainInteractor
+import com.example.mytranslator.view.main.MainViewModel
+import com.example.repository.*
+import com.example.repository.room.HistoryDataBase
+
 import org.koin.dsl.module
 
 val application = module {
-    single<IRepository<List<SearchResult>>>(named(NAME_REMOTE)) {
-        RepositoryImplementation(
-            RetrofitImplementation()
+    single { Room.databaseBuilder(get(), HistoryDataBase::class.java, "HistoryDB").build() }
+    single { get<HistoryDataBase>().historyDao() }
+    single<Repository<List<SearchResult>>> { RepositoryImplementation(RetrofitImplementation()) }
+    single<RepositoryLocal<List<SearchResult>>> {
+        RepositoryImplementationLocal(
+            RoomDataBaseImplementation(get())
         )
     }
 }
 
 val mainScreen = module {
-    factory { MainInteractor(get(named(NAME_REMOTE)), get()) }
     factory { MainViewModel(get()) }
+    factory { MainInteractor(get(), get()) }
+}
+
+val historyScreen = module {
+    factory { HistoryViewModel(get()) }
+    factory { HistoryInteractor(get(), get()) }
 }
