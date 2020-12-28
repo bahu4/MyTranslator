@@ -67,7 +67,7 @@ class   MainActivity : BaseActivity<AppState, MainInteractor>() {
     private fun showViewError() {
         val errorLayout = findViewById<ConstraintLayout>(R.id.error_layout)
         val successLayout = findViewById<FrameLayout>(R.id.success_layout)
-        errorLayout.visibility = VISIBLE
+        errorLayout.visibility = VISIBLE 
         successLayout.visibility = GONE
     }
 
